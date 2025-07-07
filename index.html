@@ -1,106 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Crud</title>
-  <link rel="stylesheet" href="global.css" />
-  
+    <meta charset="UTF-8">
+    <title>CRUD Registro de Empregados</title>
+    <link rel="stylesheet" href="global.css">
 </head>
 <body>
-  <div class="menu">
-    <h1>CRUD 2024091</h1>
-  </div>
 
-  <div class="registro">
-    <h1>Registro dos Empregados</h1>
-    <button class="novo-empregado">Adicionar Novo Empregado</button>
+    <div class="header">
+        <h1>CRUD 2024091</h1>
+    </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Salary</th>
-          <th scope="col">Department</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Rakesh</td>
-          <td>2345</td>
-          <td>IT</td>
-          <td>
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Priyanka</td>
-          <td>2500</td>
-          <td>HR</td>
-          <td>
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Anurang</td>
-          <td>4500</td>
-          <td>Sales</td>
-          <td>
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </td>
-        </tr>
-      </tbody>
+    <h2>Registro de Empregados</h2>
+
+    <button class="add-btn">Adicionar Novo Empregado</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Rakesh</td>
+                <td>2345</td>
+                <td>IT</td>
+                <td>
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Priyanka</td>
+                <td>2500</td>
+                <td>HR</td>
+                <td>
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Anurag</td>
+                <td>4500</td>
+                <td>Sales</td>
+                <td>
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
-    
+    <!-- Área onde a mensagem aparece -->
+    <div id="mensagem" class="mensagem"></div>
 
+    <script>
+      const divMensagem = document.getElementById("mensagem");
+      let timeoutId;
 
-    <div id="mensagem" class="mensagem">
-  </div>
+      function mostrarMensagem(texto, tipo) {
+        divMensagem.textContent = texto;
+        divMensagem.className = "mensagem"; // remove outras classes
+        divMensagem.classList.add(tipo, "visivel");
 
-  <script>
-    const divMensagem = document.getElementById("mensagem");
-    let timeoutId;
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          divMensagem.classList.remove("visivel");
+        }, 3000);
+      }
 
-    function mostrarMensagem(texto, tipo) {
-      divMensagem.textContent = texto;
-
-      
-      divMensagem.className = "mensagem";
-
-      
-      divMensagem.classList.add(tipo);
-      divMensagem.classList.add("visivel");
-
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        divMensagem.classList.remove("visivel");
-      }, 3000);
-    }
-
-    document.querySelector(".novo-empregado").addEventListener("click", function () {
-      mostrarMensagem("✅ Você irá adicionar um novo empregado.", "adicionar");
-    });
-
-    document.querySelectorAll(".edit").forEach(function (botao) {
-      botao.addEventListener("click", function () {
-        mostrarMensagem("✏️ Você irá editar as informações deste empregado.", "editar");
+      document.querySelector(".add-btn").addEventListener("click", function () {
+        mostrarMensagem("✅ Você irá adicionar um novo empregado.", "adicionar");
       });
-    });
 
-    document.querySelectorAll(".delete").forEach(function (botao) {
-      botao.addEventListener("click", function () {
-        mostrarMensagem("🗑️ Você irá excluir este empregado.", "excluir");
+      document.querySelectorAll(".btn-edit").forEach(function (botao) {
+        botao.addEventListener("click", function () {
+          mostrarMensagem("✏️ Você irá editar as informações deste empregado.", "editar");
+        });
       });
-    });
-  </script>
+
+      document.querySelectorAll(".btn-delete").forEach(function (botao) {
+        botao.addEventListener("click", function () {
+          mostrarMensagem("🗑️ Você irá excluir este empregado.", "excluir");
+        });
+      });
+    </script>
 </body>
 </html>
