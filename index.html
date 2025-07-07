@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crud</title>
+  <link rel="stylesheet" href="global.css" />
+  
+</head>
+<body>
+  <div class="menu">
+    <h1>CRUD 2024091</h1>
+  </div>
+
+  <div class="registro">
+    <h1>Registro dos Empregados</h1>
+    <button class="novo-empregado">Adicionar Novo Empregado</button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Department</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Rakesh</td>
+          <td>2345</td>
+          <td>IT</td>
+          <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Priyanka</td>
+          <td>2500</td>
+          <td>HR</td>
+          <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Anurang</td>
+          <td>4500</td>
+          <td>Sales</td>
+          <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+
+    <div id="mensagem" class="mensagem">
+  </div>
+
+  <script>
+    const divMensagem = document.getElementById("mensagem");
+    let timeoutId;
+
+    function mostrarMensagem(texto, tipo) {
+      divMensagem.textContent = texto;
+
+      
+      divMensagem.className = "mensagem";
+
+      
+      divMensagem.classList.add(tipo);
+      divMensagem.classList.add("visivel");
+
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        divMensagem.classList.remove("visivel");
+      }, 3000);
+    }
+
+    document.querySelector(".novo-empregado").addEventListener("click", function () {
+      mostrarMensagem("✅ Você irá adicionar um novo empregado.", "adicionar");
+    });
+
+    document.querySelectorAll(".edit").forEach(function (botao) {
+      botao.addEventListener("click", function () {
+        mostrarMensagem("✏️ Você irá editar as informações deste empregado.", "editar");
+      });
+    });
+
+    document.querySelectorAll(".delete").forEach(function (botao) {
+      botao.addEventListener("click", function () {
+        mostrarMensagem("🗑️ Você irá excluir este empregado.", "excluir");
+      });
+    });
+  </script>
+</body>
+</html>
